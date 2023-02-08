@@ -14,8 +14,10 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  // Controller che permette i cambiamenti, simile a setState
   final Completer<GoogleMapController> googleMapController = Completer();
 
+  // Metodo chiamato dal Button che cambia le coordinate della Mappa
   void torreDiPisa() async {
     final controller = await googleMapController.future;
     controller.animateCamera(
@@ -37,18 +39,24 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: GoogleMap(
+        // Tipo di Mappa utilizzata, hybrid mostra Satellite e Indicazioni
         mapType: MapType.hybrid,
+        // Disabilitati i tasti di Zoom (+ -)
         zoomControlsEnabled: false,
+        // Disabilitato il tasto che trova la Mia Posizione
         myLocationButtonEnabled: false,
+        // Posizione iniziale della Mappa
         initialCameraPosition: const CameraPosition(
           target: LatLng(42, 13),
           zoom: 5,
         ),
         onMapCreated: (controller) async {
+          // Tempo trascorso fra il click e la nuova Mappa
           await Future.delayed(const Duration(seconds: 3));
           googleMapController.complete(controller);
         },
       ),
+      // Pulsante che permette il cambio di Coordinate
       floatingActionButton: FloatingActionButton.extended(
         onPressed: torreDiPisa,
         label: const Text('Torre di Pisa'),
