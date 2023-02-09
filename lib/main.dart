@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
+// For the API KEY, go to https://pub.dev/packages/google_maps_flutter
+
+// Android: android/app/src/main/AndroidManifest.xml
+// iOS: ios/Runner/Appdelegate.swift
+
 void main() {
   runApp(App());
 }
